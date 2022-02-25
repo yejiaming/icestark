@@ -297,6 +297,14 @@ async function loadApp(app: MicroApp) {
     }
   } catch (err) {
     configuration.onError(err);
+    log.error(
+      formatErrMessage(
+        ErrorCode.LOAD_APP_ERROR,
+        isDev && 'Load app of {0} error',
+        name,
+      ),
+      err,
+    );
     updateAppConfig(name, { status: LOAD_ERROR });
   }
   if (lifeCycle.mount) {
